@@ -4,10 +4,10 @@
             <p class="py-1 px-4 hover:text-blue-500"><router-link to="/login">Login</router-link></p>
         </div>
         <div class="pt-12 pb-6">
-            <svg class="w-52 mx-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 261.76 226.69"><path d="M161.096.001l-30.225 52.351L100.647.001H-.005l130.877 226.688L261.749.001z" fill="#41b883"/><path d="M161.096.001l-30.225 52.351L100.647.001H52.346l78.526 136.01L209.398.001z" fill="#34495e"/></svg>
+            <svg class="w-36 mx-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 261.76 226.69"><path d="M161.096.001l-30.225 52.351L100.647.001H-.005l130.877 226.688L261.749.001z" fill="#41b883"/><path d="M161.096.001l-30.225 52.351L100.647.001H52.346l78.526 136.01L209.398.001z" fill="#34495e"/></svg>
         </div>
         <div class="text-center">
-            <h1 class="text-4xl">Vue.js Quickstart</h1>
+            <h1 class="text-3xl">Vue.js Quickstart</h1>
             <p>by <a class="text-blue-500" target="_blank" href="https://github.com/Dillonsmart/vue-quickstart">Dillon Smart</a></p>
         </div>
         <div class="w-36 pt-8 mx-auto">
@@ -28,12 +28,41 @@
                 </div>
             </div>
         </div>
+        <div class="w-4/7 mx-auto mt-6 py-8 px-16">
+            <h2 class="text-2xl mb-4">About</h2>
+            <p class="mb-2"><span class="font-bold">Vue.js Quickstart</span> comes with routing and state management out the box. Below is an example of state management with persisted state.</p>
+            <p>Click the button a number of times, then reload the page. Click clear to reset the state.</p>
+            <div class="text-center mt-4">
+                <button @click="clicked" class="mx-auto bg-primary rounded py-2 px-8 text-white">Total clicks: {{clicks}}</button>
+            </div>
+            <div class="text-center mt-4">
+                <button @click="clear" class="text-blue-500">Clear State</button>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
 export default {
-    name: "Home"
+    name: "Home",
+    data() {
+        return {
+            clicks: this.$store.getters.clicks,
+        }
+    },
+    methods: {
+        clicked() {
+            this.$store.commit('addClick');
+            return this.setClicks();
+        },
+        clear() {
+            this.$store.commit('resetState', this.$store);
+            return this.setClicks();
+        },
+        setClicks() {
+            this.clicks = this.$store.getters.clicks; // Many getting the state store each time isn't the best idea?
+        }
+    }
 }
 </script>
 
