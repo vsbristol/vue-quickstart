@@ -39,15 +39,45 @@
                 <button @click="clear" class="text-blue-500">Clear State</button>
             </div>
         </div>
+
+        <div class="w-4/7 mx-auto mt-6 py-8 px-16">
+            <h2 class="text-2xl mb-4">Formatting Dates</h2>
+            <p>For information about date formats, see <a class="text-blue-500" target="_blank" href="https://momentjs.com/docs/#/parsing/string-format/">moment.js docs.</a></p>
+            <section class="mt-4">
+                <p class="mb-2">First import the desired method.</p>
+                <pre class="p-4 rounded bg-gray-100 text-sm">import {formatDate} from "../helpers/dates";</pre>
+            </section>
+            <section class="mt-4">
+                <p class="mb-2">Next, create the computed method</p>
+                <pre class="p-4 rounded bg-gray-100 text-sm">computed: {
+    now() {
+        return formatDate('Do MMM YY, HH:mma', new Date())
+    }
+}</pre>
+            </section>
+            <section class="mt-4">
+                <p class="mb-2">Finally, call the computed method in the template</p>
+                <pre class="p-4 rounded bg-gray-100 text-sm">&lcub;&lcub; now &rcub;&rcub;</pre>
+            </section>
+            <p class="my-2 font-bold">Result</p>
+            <p class="my-2">{{ now }}</p>
+        </div>
     </div>
 </template>
 
 <script>
+import {formatDate} from "../helpers/dates";
+
 export default {
     name: "Home",
     data() {
         return {
-            clicks: this.$store.getters.clicks,
+            clicks: this.$store.getters.clicks
+        }
+    },
+    computed: {
+        now() {
+            return formatDate('Do MMM YY, HH:mma', new Date())
         }
     },
     methods: {
