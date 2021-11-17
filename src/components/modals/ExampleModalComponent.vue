@@ -1,7 +1,7 @@
 <template>
     <div>
-        <div class="bg-gray-900 opacity-30 h-full w-full fixed top-0 left-0 z-10" v-on:click="hide"></div>
-        <div class="bg-white rounded-lg text-lg pt-6 shadow-lg w-96 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
+        <div class="h-full w-full fixed top-0 left-0 z-20" v-on:click="hide"></div>
+        <div class="bg-white rounded-lg text-lg pt-6 shadow-lg w-96 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30">
             <div class="px-6 pb-6 text-center">
                 <h3 class="text-xl mb-2 font-semibold">Your Options</h3>
                 <p class="text-gray-600 font-light">What action would you like to perform?</p>
@@ -28,5 +28,23 @@ export default {
 </script>
 
 <style scoped>
+.bounce-enter-active {
+    animation: bounce-in .5s ease-out both;
+}
 
+.bounce-leave-active {
+    animation: bounce-in .5s reverse ease-in both;
+}
+
+@keyframes bounce-in {
+    0% {
+        transform: scale(0);
+    }
+    50% {
+        transform: scale(1.10);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
 </style>

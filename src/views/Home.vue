@@ -64,9 +64,15 @@
         </div>
         <div class="w-4/7 mx-auto py-8 px-16">
             <h2 class="text-2xl mb-4">Modals</h2>
-            <button v-on:click="showModal = true">Open</button>
-            <transition name="component-fade" mode="out-in">
-                <example-modal-component v-if="showModal" @close="closeModal"></example-modal-component>
+            <p>For bounce modals we use 2 separate components and 2 separate transitions, one to bounce the modal in, and one to add a translucent layer behind.</p>
+            <div class="mt-4 text-center">
+                <button v-on:click="showModal = true" class="mx-auto bg-primary rounded py-2 px-8 text-white">Open</button>
+            </div>
+            <transition name="bounce" mode="out-in">
+                <example-modal-component v-if="showModal" @close="closeModal" class="h-full w-full fixed top-0 left-0 z-20"></example-modal-component>
+            </transition>
+            <transition name="fade" mode="out-in">
+                <modal-layer-component v-if="showModal"></modal-layer-component>
             </transition>
         </div>
 
@@ -76,10 +82,11 @@
 <script>
 import {formatDate} from "../helpers/dates";
 import ExampleModalComponent from "../components/modals/ExampleModalComponent";
+import ModalLayerComponent from "../components/modals/ModalLayerComponent";
 
 export default {
     name: "Home",
-    components: {ExampleModalComponent},
+    components: {ModalLayerComponent, ExampleModalComponent},
     data() {
         return {
             clicks: this.$store.getters.clicks,
