@@ -62,17 +62,28 @@
             <p class="my-2 font-bold">Result</p>
             <p class="my-2">{{ now }}</p>
         </div>
+        <div class="w-4/7 mx-auto py-8 px-16">
+            <h2 class="text-2xl mb-4">Modals</h2>
+            <button v-on:click="showModal = true">Open</button>
+            <transition name="component-fade" mode="out-in">
+                <example-modal-component v-if="showModal" @close="closeModal"></example-modal-component>
+            </transition>
+        </div>
+
     </div>
 </template>
 
 <script>
 import {formatDate} from "../helpers/dates";
+import ExampleModalComponent from "../components/modals/ExampleModalComponent";
 
 export default {
     name: "Home",
+    components: {ExampleModalComponent},
     data() {
         return {
-            clicks: this.$store.getters.clicks
+            clicks: this.$store.getters.clicks,
+            showModal: false,
         }
     },
     computed: {
@@ -91,6 +102,9 @@ export default {
         },
         setClicks() {
             this.clicks = this.$store.getters.clicks; // Many getting the state store each time isn't the best idea?
+        },
+        closeModal() {
+            this.showModal = false;
         }
     }
 }

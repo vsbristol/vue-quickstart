@@ -14,7 +14,7 @@ export default {
     name: "SidebarComponent",
     methods: {
         close() {
-            this.$parent.menuState = false;
+            this.$emit('close')
         }
     }
 }

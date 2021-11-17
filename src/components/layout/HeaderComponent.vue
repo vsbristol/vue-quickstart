@@ -29,7 +29,7 @@
                 </div>
             </div>
         </header>
-        <sidebar-component v-if="menuState"></sidebar-component>
+        <sidebar-component v-if="menuState" @close="closeSidebar"></sidebar-component>
     </div>
 </template>
 
@@ -50,6 +50,9 @@ export default {
         logout() {
             this.$store.commit('resetState');
             this.$router.push({name: 'Login'});
+        },
+        closeSidebar() {
+            this.menuState = false;
         }
     }
 }
