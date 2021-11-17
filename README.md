@@ -15,6 +15,7 @@ It is built using Vue 3.
 * Vuex
   * Example of state management
   * Persisted state on page refresh
+* Axios
 * Tailwind CSS
 * Moment.js
 * Helper functions
