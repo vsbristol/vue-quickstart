@@ -74,6 +74,17 @@
             </transition>
         </div>
 
+        <div class="w-4/7 mx-auto py-8 px-16">
+            <h2 class="text-2xl mb-4">Toasts</h2>
+            <p>Click the button below to show the toast.</p>
+            <div class="mt-4 text-center">
+                <button v-on:click="showToast = true" class="mx-auto bg-primary rounded py-2 px-8 text-white">Show Toast</button>
+            </div>
+            <transition name="fade" mode="out-in">
+                <toast v-if="showToast"></toast>
+            </transition>
+        </div>
+
     </div>
 </template>
 
@@ -90,7 +101,11 @@ export default {
         return {
             clicks: this.$store.getters.clicks,
             showModal: false,
+            showToast: false,
         }
+    },
+    created() {
+      console.log(this.abToast);
     },
     computed: {
         now() {
